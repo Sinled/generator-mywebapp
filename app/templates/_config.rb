@@ -11,4 +11,4 @@ http_generated_images_path = "/static/images/generated"
 fonts_dir = "<%= appPath %>/fonts"
 fonts_path = "../fonts"
 http_fonts_path = "/static/fonts"
-relative_assets = "false"
+relative_assets = false

@@ -125,6 +125,17 @@ module.exports = (grunt) ->
         files: "<%%= sass.server.files %>"
 
 
+    # notify messages
+    notify:
+      options:
+        enabled: true
+        max_jshint_notifications: 5
+
+      dist:
+        options:
+          message: "Build complete"
+
+
     # beautify and minify code with uglify
     uglify:
       server:
@@ -192,7 +203,7 @@ module.exports = (grunt) ->
           dot: true
           cwd: "<%%= yeoman.app %>"
           dest: "<%%= yeoman.dist %>"
-          src: ["*.{ico,png,txt}", ".htaccess", "images/{,*/}*.{webp,gif}", "fonts/*"]
+          src: ["*.{ico,png,txt}", ".htaccess", "images/{,*/}*.{png,jpg,jpeg,webp,gif}", "fonts/*"]
         ]
 
       server:
@@ -243,6 +254,7 @@ module.exports = (grunt) ->
     "concurrent:dist",
     "uglify:dist",
     "copy",
+    "notify:dist",
   ]
 
   # $ grunt
