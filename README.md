@@ -1,3 +1,14 @@
+## install from github 
+
+```
+$ npm install -g yo
+$ npm install -g yo generator-generator
+$ git clone https://github.com/Sinled/generator-mywebapp
+$ cd generator-mywebapp
+$ npm link
+```
+
+
 # generator-mywebapp [![Build Status](https://secure.travis-ci.org/sinled/generator-mywebapp.png?branch=master)](https://travis-ci.org/sinled/generator-mywebapp)
 
 A generator for [Yeoman](http://yeoman.io).
