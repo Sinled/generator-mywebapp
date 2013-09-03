@@ -163,12 +163,7 @@ module.exports = (grunt) ->
             global_defs:
               DEBUG: false
 
-        files: 
-          "<%%= yeoman.dist %>/scripts/main.js": [
-            '<%%= yeoman.app %>/bower_components/jquery/jquery.min.js',
-            '.tmp/scripts/{,*/}*.js',
-            '<%%= yeoman.app %>/scripts/{,*/}*.js'
-          ]
+        files: "<%%= uglify.server.files %>"
 
 
     imagemin:
