@@ -150,8 +150,9 @@ module.exports = (grunt) ->
           # sourceMapIn: ".tmp/scripts/{,*/}*.map"
 
         files: 
+          "<%%= yeoman.dist %>/scripts/jquery.min.js": "<%%= yeoman.app %>/bower_components/jquery/jquery.min.js"
+
           "<%%= yeoman.dist %>/scripts/main.js": [
-            '<%%= yeoman.app %>/bower_components/jquery/jquery.min.js',
             '.tmp/scripts/{,*/}*.js',
             '<%%= yeoman.app %>/scripts/{,*/}*.js'
           ]
