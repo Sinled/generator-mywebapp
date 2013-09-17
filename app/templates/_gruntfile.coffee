@@ -140,6 +140,8 @@ module.exports = (grunt) ->
     uglify:
       server:
         options:
+          mangle: false
+          
           compress: 
             global_defs:
               DEBUG: true
@@ -150,8 +152,6 @@ module.exports = (grunt) ->
           # sourceMapIn: ".tmp/scripts/{,*/}*.map"
 
         files: 
-          "<%%= yeoman.dist %>/scripts/jquery.min.js": "<%%= yeoman.app %>/bower_components/jquery/jquery.min.js"
-
           "<%%= yeoman.dist %>/scripts/main.js": [
             '.tmp/scripts/{,*/}*.js',
             '<%%= yeoman.app %>/scripts/{,*/}*.js'
@@ -200,6 +200,8 @@ module.exports = (grunt) ->
           cwd: "<%%= yeoman.app %>"
           dest: "<%%= yeoman.dist %>"
           src: ["*.{ico,png,txt}", ".htaccess", "images/{,*/}*.{png,jpg,jpeg,webp,gif}", "fonts/*"]
+        ,
+          "<%%= yeoman.dist %>/scripts/jquery.min.js": "<%%= yeoman.app %>/bower_components/jquery/jquery.min.js"
         ]
 
       server:
