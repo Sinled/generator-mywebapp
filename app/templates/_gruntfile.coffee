@@ -254,7 +254,6 @@ module.exports = (grunt) ->
     "concurrent:server",
     "concat:server",
     "copy",
-    # "open", 
     "watch"
   ]
 
@@ -269,3 +268,6 @@ module.exports = (grunt) ->
 
   # $ grunt
   grunt.registerTask "default", ["jshint", "build"]
+
+  # $ grunt view
+  grunt.registerTask "view", ["open", "server"]
