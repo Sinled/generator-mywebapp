@@ -28,7 +28,7 @@ module.exports = (grunt) ->
         files: ["<%%= yeoman.app %>/scripts/{,*/}*.coffee"]
         tasks: [
           "coffee:dist",
-          "uglify:server"
+          "concat:server"
         ]
 
       js:
@@ -87,7 +87,7 @@ module.exports = (grunt) ->
       dist:
         options:
           sourceMap: true
-          bare: true
+          # bare: true
 
         files: [
           expand: true
@@ -151,11 +151,7 @@ module.exports = (grunt) ->
           # sourceMapRoot: "<%%= yeoman.app %>"
           # sourceMapIn: ".tmp/scripts/{,*/}*.map"
 
-        files: 
-          "<%%= yeoman.dist %>/scripts/main.js": [
-            '.tmp/scripts/{,*/}*.js',
-            '<%%= yeoman.app %>/scripts/{,*/}*.js'
-          ]
+        files: "<%%= uglify.dist.files %>"
 
       dist:
         options:
@@ -164,8 +160,24 @@ module.exports = (grunt) ->
             global_defs:
               DEBUG: false
 
-        files: "<%%= uglify.server.files %>"
+        files: 
+          "<%%= yeoman.dist %>/scripts/main.js": [
+            '<%%= yeoman.app %>/scripts/vendor/underscore-min.js'
+            '<%%= yeoman.app %>/scripts/vendor/backbone-min.js'
+            '.tmp/scripts/main.js',
+            '.tmp/scripts/models/{,*/}*.js',
+            '.tmp/scripts/views/{,*/}*.js',
+            '.tmp/scripts/collections/{,*/}*.js',
+            '.tmp/scripts/routers/{,*/}*.js',
+          ]
 
+    # concat js on grunt server
+    concat:
+      server:
+        options:
+          banner: "var DEBUG = true;\n\n"
+
+        files: "<%%= uglify.dist.files %>"
 
     imagemin:
       dist:
@@ -240,9 +252,9 @@ module.exports = (grunt) ->
   grunt.registerTask "server", [
     "clean",
     "concurrent:server",
-    "uglify:server",
+    "concat:server",
     "copy",
-    "open", 
+    # "open", 
     "watch"
   ]
 
