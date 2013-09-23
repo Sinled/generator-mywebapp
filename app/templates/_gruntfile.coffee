@@ -36,7 +36,7 @@ module.exports = (grunt) ->
           # '.tmp/scripts/{,*/}*.js',
           '<%%= yeoman.app %>/scripts/{,*/}*.js'
         ]
-        tasks: ["uglify:server"]
+        tasks: ["concat:server"]
 
       sass:
         files: ["<%%= yeoman.app %>/styles/{,*/}*.{scss,sass}"]
@@ -162,13 +162,15 @@ module.exports = (grunt) ->
 
         files: 
           "<%%= yeoman.dist %>/scripts/main.js": [
-            '<%%= yeoman.app %>/scripts/vendor/underscore-min.js'
-            '<%%= yeoman.app %>/scripts/vendor/backbone-min.js'
-            '.tmp/scripts/main.js',
-            '.tmp/scripts/models/{,*/}*.js',
-            '.tmp/scripts/views/{,*/}*.js',
-            '.tmp/scripts/collections/{,*/}*.js',
-            '.tmp/scripts/routers/{,*/}*.js',
+            # '<%%= yeoman.app %>/scripts/vendor/underscore-min.js'
+            # '<%%= yeoman.app %>/scripts/vendor/backbone-min.js'
+            '.tmp/scripts/{,*/}*.js'
+            '<%%= yeoman.app %>/scripts/{,*/}*.js'            
+            # '.tmp/scripts/main.js',
+            # '.tmp/scripts/models/{,*/}*.js',
+            # '.tmp/scripts/views/{,*/}*.js',
+            # '.tmp/scripts/collections/{,*/}*.js',
+            # '.tmp/scripts/routers/{,*/}*.js',
           ]
 
     # concat js on grunt server
