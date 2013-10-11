@@ -20,6 +20,7 @@ MywebappGenerator.prototype.askFor = function askFor() {
   this.appPath = 'src';
   this.appTemplates = 'templates';
   this.appStatic = 'static';
+  this.appAssets = 'assests';
 
   var cb = this.async();
 
@@ -37,6 +38,11 @@ MywebappGenerator.prototype.askFor = function askFor() {
       default: 'src',
     },
     {
+      name: 'appAssestsPath',
+      message: 'Assests folder',
+      default: 'assests',
+    },
+    {
       name: 'appTemplatesPath',
       message: 'Application templates folder',
       default: 'templates',
@@ -45,13 +51,13 @@ MywebappGenerator.prototype.askFor = function askFor() {
       name: 'appStaticPath',
       message: 'Application Static folder',
       default: 'static',
-
     },
   ];
 
   this.prompt(prompts, function (props) {
       this.appName = props.appName;
       this.appPath = props.appSrcPath;
+      this.appAssets = props.appAssestsPath;
       this.appTemplates = props.appTemplatesPath;
       this.appStatic = props.appStaticPath;
 
@@ -62,6 +68,7 @@ MywebappGenerator.prototype.askFor = function askFor() {
 
 MywebappGenerator.prototype.app = function app() {
   this.mkdir(this.appPath);
+  this.mkdir(this.appAssets);
   this.mkdir(this.appTemplates);
 
   this.template('_package.json', 'package.json');

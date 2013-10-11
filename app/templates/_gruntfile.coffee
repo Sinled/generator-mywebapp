@@ -13,6 +13,7 @@ module.exports = (grunt) ->
   # configurable paths
   yeomanConfig =
     app: "<%= appPath %>"
+    assests: "<%= appAssets %>"
     templ: "<%= appTemplates %>"
     dist: "<%= appStatic %>"
 
@@ -230,6 +231,14 @@ module.exports = (grunt) ->
           cwd: ".tmp/images"
           dest: "<%%= yeoman.dist %>/images"
           src: ["generated/*"]
+        ]
+
+      assests:
+        files: [
+          expand: true
+          cwd: "<%%= yeoman.assests %>"
+          dest: "<%%= yeoman.dist %>"
+          src: ["{,*/}*.*"]
         ]
     
     # run heavy tasks here concurrently
