@@ -81,6 +81,7 @@ MywebappGenerator.prototype.app = function app() {
 MywebappGenerator.prototype.projectfiles = function projectfiles() {
   this.copy('editorconfig', '.editorconfig');
   this.copy('jshintrc', '.jshintrc');
+  this.copy('re-init-frontend.sh', 're-init-frontend.sh');
 };
 
 MywebappGenerator.prototype.runtime = function runtime() {
