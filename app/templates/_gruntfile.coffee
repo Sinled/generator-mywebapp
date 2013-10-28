@@ -43,6 +43,7 @@ module.exports = (grunt) ->
         files: ["<%%= yeoman.app %>/styles/{,*/}*.{scss,sass}"]
         tasks: [
           "sass:server",
+          "autoprefixer",
           "copy:server"
         ]
 
