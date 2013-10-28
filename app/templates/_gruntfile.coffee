@@ -6,10 +6,10 @@
 # use this if you want to recursively match all subfolders:
 # 'test/spec/**/*.js'
 module.exports = (grunt) ->
-  
+
   # load all grunt tasks
   require("matchdep").filterDev("grunt-*").forEach grunt.loadNpmTasks
-  
+
   # configurable paths
   yeomanConfig =
     app: "<%= appPath %>"
@@ -142,8 +142,8 @@ module.exports = (grunt) ->
       server:
         options:
           mangle: false
-          
-          compress: 
+
+          compress:
             global_defs:
               DEBUG: true
 
@@ -157,16 +157,17 @@ module.exports = (grunt) ->
       dist:
         options:
           report: "min"
-          compress: 
+          compress:
             global_defs:
               DEBUG: false
 
-        files: 
+        files:
           "<%%= yeoman.dist %>/scripts/main.js": [
-            # '<%%= yeoman.app %>/scripts/vendor/underscore-min.js'
-            # '<%%= yeoman.app %>/scripts/vendor/backbone-min.js'
+            # '<%%= yeoman.app %>/bower_components/requirejs/require.js'
+            # '<%%= yeoman.app %>/bower_components/underscore/underscore-min.js'
+            # '<%%= yeoman.app %>/bower_components/backbone/backbone-min.js'
             '.tmp/scripts/{,*/}*.js'
-            '<%%= yeoman.app %>/scripts/{,*/}*.js'            
+            '<%%= yeoman.app %>/scripts/{,*/}*.js'
             # '.tmp/scripts/main.js',
             # '.tmp/scripts/models/{,*/}*.js',
             # '.tmp/scripts/views/{,*/}*.js',
@@ -240,7 +241,17 @@ module.exports = (grunt) ->
           dest: "<%%= yeoman.dist %>"
           src: ["{,*/}*.*"]
         ]
-    
+
+
+    #use autoprefixer for clean vendor prefixes
+    autoprefixer:
+      options:
+        browsers: ['last 2 version']
+
+      no_dest:
+        src: '.tmp/styles/*.css'
+
+
     # run heavy tasks here concurrently
     concurrent:
       server: [
@@ -264,6 +275,7 @@ module.exports = (grunt) ->
     "clean",
     "concurrent:server",
     "concat:server",
+    "autoprefixer",
     "copy",
     "watch"
   ]
@@ -273,6 +285,7 @@ module.exports = (grunt) ->
     "clean",
     "concurrent:dist",
     "uglify:dist",
+    "autoprefixer",
     "copy",
     "notify:dist",
   ]
