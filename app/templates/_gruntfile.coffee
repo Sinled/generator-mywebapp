@@ -216,7 +216,7 @@ module.exports = (grunt) ->
           dot: true
           cwd: "<%%= yeoman.app %>"
           dest: "<%%= yeoman.dist %>"
-          src: ["*.{ico,png,txt}", ".htaccess", "images/{,*/}*.{png,jpg,jpeg,webp,gif}", "fonts/*"]
+          src: ["*.{ico,png,txt}", ".htaccess", "images/{,*/}*.{png,jpg,jpeg,webp,gif,svg}", "fonts/*"]
         ,
           "<%%= yeoman.dist %>/scripts/jquery.min.js": "<%%= yeoman.app %>/bower_components/jquery/jquery.min.js"
         ]
