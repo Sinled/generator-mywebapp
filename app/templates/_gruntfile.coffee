@@ -47,6 +47,12 @@ module.exports = (grunt) ->
           "copy:server"
         ]
 
+      images:
+        files: ["<%%= yeoman.app %>/images/*", "<%%= yeoman.app %>/fonts/*"]
+        tasks: [
+          "copy:images"
+        ]
+
       # livereload:
       #   files: [
       #     "<%%= yeoman.templ %>/*.html",
@@ -216,9 +222,18 @@ module.exports = (grunt) ->
           dot: true
           cwd: "<%%= yeoman.app %>"
           dest: "<%%= yeoman.dist %>"
-          src: ["*.{ico,png,txt}", ".htaccess", "images/{,*/}*.{png,jpg,jpeg,webp,gif,svg}", "fonts/*"]
+          src: ["*.{ico,png,txt}", ".htaccess"]
         ,
           "<%%= yeoman.dist %>/scripts/jquery.min.js": "<%%= yeoman.app %>/bower_components/jquery/jquery.min.js"
+        ]
+
+      images:
+        files: [
+          expand: true
+          dot: true
+          cwd: "<%%= yeoman.app %>"
+          dest: "<%%= yeoman.dist %>"
+          src: ["images/{,*/}*.{png,jpg,jpeg,webp,gif,svg}", "fonts/*"]
         ]
 
       server:
