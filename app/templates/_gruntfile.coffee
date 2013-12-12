@@ -28,7 +28,7 @@ module.exports = (grunt) ->
       coffee:
         files: ["<%%= yeoman.app %>/scripts/{,*/}*.coffee"]
         tasks: [
-          "coffee:dist",
+          "coffee:dist"
           "concat:server"
         ]
 
@@ -42,8 +42,8 @@ module.exports = (grunt) ->
       sass:
         files: ["<%%= yeoman.app %>/styles/{,*/}*.{scss,sass}"]
         tasks: [
-          "sass:server",
-          "autoprefixer",
+          "sass:server"
+          "autoprefixer"
           "copy:server"
         ]
 
@@ -119,10 +119,10 @@ module.exports = (grunt) ->
           lineNumbers: true
 
         files: [{
-          expand: true,
-          cwd: '<%%= yeoman.app %>/styles',
-          src: ['*.{scss,sass}'],
-          dest: '.tmp/styles',
+          expand: true
+          cwd: '<%%= yeoman.app %>/styles'
+          src: ['*.{scss,sass}']
+          dest: '.tmp/styles'
           ext: '.css'
         }]
 
@@ -194,7 +194,7 @@ module.exports = (grunt) ->
       dist:
         files: [
           expand: true
-          cwd: "<%%= yeoman.app %>/images"
+          cwd: "<%%= yeoman.dist %>/images"
           src: "{,*/}*.{png,jpg,jpeg}"
           dest: "<%%= yeoman.dist %>/images"
         ]
@@ -203,7 +203,7 @@ module.exports = (grunt) ->
       dist:
         files: [
           expand: true
-          cwd: "<%%= yeoman.app %>/images"
+          cwd: "<%%= yeoman.dist %>/images"
           src: "{,*/}*.svg"
           dest: "<%%= yeoman.dist %>/images"
         ]
@@ -276,10 +276,8 @@ module.exports = (grunt) ->
       ]
 
       dist: [
-        "coffee",
+        "coffee"
         "sass:dist"
-        "imagemin",
-        "svgmin"
       ]
 
 
@@ -288,22 +286,24 @@ module.exports = (grunt) ->
 
   # $ grunt server
   grunt.registerTask "server", [
-    "clean",
-    "concurrent:server",
-    "concat:server",
-    "autoprefixer",
-    "copy",
+    "clean"
+    "concurrent:server"
+    "concat:server"
+    "autoprefixer"
+    "copy"
     "watch"
   ]
 
   # $ grunt build
   grunt.registerTask "build", [
-    "clean",
-    "concurrent:dist",
-    "uglify:dist",
-    "autoprefixer",
-    "copy",
-    "notify:dist",
+    "clean"
+    "concurrent:dist"
+    "uglify:dist"
+    "autoprefixer"
+    "copy"
+    "imagemin"
+    "svgmin"
+    "notify:dist"
   ]
 
   # $ grunt
