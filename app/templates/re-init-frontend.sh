@@ -14,5 +14,7 @@ echo 'done'
 
 echo '==================='
 echo 'To build frontend use "grunt" or "grunt server" commands'
+echo '-------------------'
+echo 'To generate documentation use "grunt docs"'
 echo '==================='
 

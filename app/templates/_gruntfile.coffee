@@ -12,10 +12,14 @@ module.exports = (grunt) ->
 
   # configurable paths
   yeomanConfig =
+    appName: "<%= appName %>"
     app: "<%= appPath %>"
     assests: "<%= appAssets %>"
     templ: "<%= appTemplates %>"
     dist: "<%= appStatic %>"
+    docs: "<%= appDocs %>"
+    # docs: "../templates/frontend-docs"
+
 
   grunt.initConfig
     yeoman: yeomanConfig
@@ -53,15 +57,6 @@ module.exports = (grunt) ->
           "copy:images"
         ]
 
-      # livereload:
-      #   files: [
-      #     "<%%= yeoman.templ %>/*.html",
-      #     "{.tmp,<%%= yeoman.app %>}/styles/{,*/}*.css",
-      #     # "{.tmp,<%%= yeoman.app %>}/scripts/{,*/}*.js",
-      #     "<%%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}"
-      #   ]
-      # tasks: ["uglify:server"]
-
 
     # open selected browser
     open:
@@ -83,6 +78,13 @@ module.exports = (grunt) ->
           dot: true
           src: [".tmp", "<%%= yeoman.dist %>/*", "!<%%= yeoman.dist %>/.git*"]
         ]
+
+      docs:
+        files: [
+          dot: true
+          src: ["<%%= yeoman.docs %>/*"]
+        ]
+
 
     jshint:
       options:
@@ -182,6 +184,7 @@ module.exports = (grunt) ->
             # '.tmp/scripts/routers/{,*/}*.js',
           ]
 
+
     # concat js on grunt server
     concat:
       server:
@@ -190,6 +193,8 @@ module.exports = (grunt) ->
 
         files: "<%%= uglify.dist.files %>"
 
+
+    # minify images
     imagemin:
       dist:
         files: [
@@ -199,6 +204,8 @@ module.exports = (grunt) ->
           dest: "<%%= yeoman.dist %>/images"
         ]
 
+
+    # minify svg images
     svgmin:
       dist:
         files: [
@@ -268,6 +275,19 @@ module.exports = (grunt) ->
         src: '.tmp/styles/*.css'
 
 
+    # generate frontend style guide
+    styleguide:
+      dist:
+        options:
+          framework:
+            name: "styledocco"
+
+          name: "<%%= yeoman.appName %> Style Guide"
+
+        files:
+          "<%%= yeoman.docs %>/docs": "<%%= yeoman.app %>/styles/**/*.{scss,sass}"
+
+
     # run heavy tasks here concurrently
     concurrent:
       server: [
@@ -281,12 +301,11 @@ module.exports = (grunt) ->
       ]
 
 
-
   # grunt tacks
 
   # $ grunt server
   grunt.registerTask "server", [
-    "clean"
+    "clean:dist"
     "concurrent:server"
     "concat:server"
     "autoprefixer"
@@ -294,9 +313,10 @@ module.exports = (grunt) ->
     "watch"
   ]
 
+
   # $ grunt build
   grunt.registerTask "build", [
-    "clean"
+    "clean:dist"
     "concurrent:dist"
     "uglify:dist"
     "autoprefixer"
@@ -311,3 +331,6 @@ module.exports = (grunt) ->
 
   # $ grunt view
   grunt.registerTask "view", ["open", "server"]
+
+  # $ grunt docs
+  grunt.registerTask "docs", ["clean:docs", "styleguide"]

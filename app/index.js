@@ -52,6 +52,11 @@ MywebappGenerator.prototype.askFor = function askFor() {
       message: 'Application Static folder',
       default: 'static',
     },
+    {
+      name: 'appDocsPath',
+      message: 'Frontend documentation folder',
+      default: 'frontend-docs',
+    },
   ];
 
   this.prompt(prompts, function (props) {
@@ -60,6 +65,7 @@ MywebappGenerator.prototype.askFor = function askFor() {
       this.appAssets = props.appAssestsPath;
       this.appTemplates = props.appTemplatesPath;
       this.appStatic = props.appStaticPath;
+      this.appDocs = props.appDocsPath;
 
     cb();
   }.bind(this));
