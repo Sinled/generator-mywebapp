@@ -81,7 +81,7 @@ MywebappGenerator.prototype.app = function app() {
   this.template('_bower.json', 'bower.json');
   this.template('_gruntfile.coffee', 'gruntfile.coffee');
   this.template('_config.rb', 'config.rb');
-  this.copy('readme.md', 'readme.md');
+  this.template('_readme.md', 'readme.md');
 };
 
 MywebappGenerator.prototype.projectfiles = function projectfiles() {
