@@ -1,10 +1,7 @@
 ## install from github 
 
 ```
-$ npm install -g yo generator-generator
-$ git clone https://github.com/Sinled/generator-mywebapp
-$ cd generator-mywebapp
-$ npm link
+& npm install -g git+ssh://git@github.com:Sinled/generator-mywebapp.git
 ```
 
 
