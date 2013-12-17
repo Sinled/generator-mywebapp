@@ -10,6 +10,9 @@ module.exports = (grunt) ->
   # load all grunt tasks
   require("matchdep").filterDev("grunt-*").forEach grunt.loadNpmTasks
 
+  # package options
+  packageJson = grunt.file.readJSON('package.json')
+  
   # configurable paths
   yeomanConfig =
     appName: "<%= appName %>"
@@ -23,6 +26,7 @@ module.exports = (grunt) ->
 
   grunt.initConfig
     yeoman: yeomanConfig
+    pkg: packageJson
 
     # watch and livereload
     watch:
@@ -215,11 +219,6 @@ module.exports = (grunt) ->
           dest: "<%%= yeoman.dist %>/images"
         ]
 
-    # cssmin:
-      # dist:
-        # files:
-          # '<%%= yeoman.dist %>/styles/main.css': ['.tmp/styles/{,*/}*.css', '<%%= yeoman.app %>/styles/{,*/}*.css']
-
 
     # copy files not handled in other tasks here
     copy:
@@ -264,6 +263,17 @@ module.exports = (grunt) ->
           dest: "<%%= yeoman.dist %>"
           src: ["{,*/}*.*"]
         ]
+
+
+    #minify styles after autoprefixer
+    cssmin:
+      options:
+        report: 'gzip'
+        banner: '/*! Build <%%= pkg.name %> - v<%%= pkg.version %> - <%%= grunt.template.today("yyyy-mm-dd") %> */'        
+
+      dist:
+        files:
+          '<%%= yeoman.dist %>/styles/main.css': '<%%= yeoman.dist %>/styles/{,*/}*.css'
 
 
     #use autoprefixer for clean vendor prefixes
@@ -323,6 +333,7 @@ module.exports = (grunt) ->
     "copy"
     "imagemin"
     "svgmin"
+    "cssmin"
     "notify:dist"
   ]
 
