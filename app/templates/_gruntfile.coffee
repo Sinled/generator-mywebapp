@@ -334,6 +334,7 @@ module.exports = (grunt) ->
     "imagemin"
     "svgmin"
     "cssmin"
+    "docs"
     "notify:dist"
   ]
 
