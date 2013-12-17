@@ -56,7 +56,7 @@ module.exports = (grunt) ->
         ]
 
       images:
-        files: ["<%%= yeoman.app %>/images/*", "<%%= yeoman.app %>/fonts/*"]
+        files: ["<%%= yeoman.app %>/images/{,*/}*", "<%%= yeoman.app %>/fonts/{,*/}*"]
         tasks: [
           "copy:images"
         ]
