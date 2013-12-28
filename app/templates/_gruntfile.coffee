@@ -56,7 +56,7 @@ module.exports = (grunt) ->
         ]
 
       images:
-        files: ["<%%= yeoman.app %>/images/{,*/}*", "<%%= yeoman.app %>/fonts/{,*/}*"]
+        files: ["<%%= yeoman.app %>/images/{,*/}*", "<%%= yeoman.app %>/fonts/{,*/}*", "<%%= yeoman.app %>/images/!**/lossy/**"]
         tasks: [
           "copy:images"
         ]
@@ -211,6 +211,21 @@ module.exports = (grunt) ->
 
 
     # minify svg images
+    # get api key here https://tinypng.com/developers
+    tinypng:
+      options:
+        apiKey: '5vuDa2FtB3nkCSUiX2kKBFuGj1jzxsIe'
+        checkSigs: true
+        sigFile: 'tinypng-signatures.json'
+
+      dist:
+        expand: true
+        cwd: '<%%= yeoman.app %>/images/lossy/'
+        src: '{,*/}*.png'
+        dest: '<%%= yeoman.app %>/images/'
+        ext: '.min.png'
+
+
     svgmin:
       dist:
         files: [
@@ -240,7 +255,7 @@ module.exports = (grunt) ->
           dot: true
           cwd: "<%%= yeoman.app %>"
           dest: "<%%= yeoman.dist %>"
-          src: ["images/{,*/}*.{png,jpg,jpeg,webp,gif,svg}", "fonts/*"]
+          src: ["images/{,*/}*.{png,jpg,jpeg,webp,gif,svg}", "fonts/*", "!images/**/lossy/**"]
         ]
 
       server:
@@ -336,6 +351,7 @@ module.exports = (grunt) ->
     "concurrent:server"
     "concat:server"
     "autoprefixer:server"
+    # "tinypng:dist"
     "copy"
     "watch"
   ]
@@ -347,6 +363,7 @@ module.exports = (grunt) ->
     "concurrent:dist"
     "uglify:dist"
     "autoprefixer:dist"
+    # "tinypng:dist"
     "copy"
     "imagemin"
     "svgmin"
@@ -366,3 +383,6 @@ module.exports = (grunt) ->
 
   # $ grunt css comb
   grunt.registerTask "comb", ["csscomb"]
+
+  # $ grunt compress via tiny png
+  grunt.registerTask "tiny", ["tinypng"]
