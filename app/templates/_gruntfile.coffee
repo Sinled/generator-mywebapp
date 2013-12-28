@@ -51,7 +51,7 @@ module.exports = (grunt) ->
         files: ["<%%= yeoman.app %>/styles/{,*/}*.{scss,sass}"]
         tasks: [
           "sass:server"
-          "autoprefixer"
+          "autoprefixer:dist"
           "copy:server"
         ]
 
@@ -97,6 +97,7 @@ module.exports = (grunt) ->
 
       all: ["Gruntfile.js", "<%%= yeoman.app %>/scripts/{,*/}*.js", "!<%%= yeoman.app %>/scripts/vendor/*", "test/spec/{,*/}*.js"]
 
+
     coffee:
       dist:
         options:
@@ -134,7 +135,7 @@ module.exports = (grunt) ->
 
       dist:
         options:
-          style: "compressed"
+          style: "expanded"
 
         files: "<%%= sass.server.files %>"
 
@@ -280,9 +281,25 @@ module.exports = (grunt) ->
     autoprefixer:
       options:
         browsers: ['last 2 version']
+        map: true
 
-      no_dest:
+      dist:
         src: '.tmp/styles/*.css'
+
+      server:
+        options:
+          map: true
+
+        src: '<%%= autoprefixer.dist.src %>'
+
+
+    # csscomb
+    csscomb:
+      dynamic_mappings:
+        expand: true
+        cwd: '<%%= yeoman.app %>/styles/'
+        src: ['{,*/}*.scss']
+        dest: '<%%= yeoman.app %>/styles/'
 
 
     # generate frontend style guide
@@ -318,7 +335,7 @@ module.exports = (grunt) ->
     "clean:dist"
     "concurrent:server"
     "concat:server"
-    "autoprefixer"
+    "autoprefixer:server"
     "copy"
     "watch"
   ]
@@ -329,7 +346,7 @@ module.exports = (grunt) ->
     "clean:dist"
     "concurrent:dist"
     "uglify:dist"
-    "autoprefixer"
+    "autoprefixer:dist"
     "copy"
     "imagemin"
     "svgmin"
@@ -346,3 +363,6 @@ module.exports = (grunt) ->
 
   # $ grunt docs
   grunt.registerTask "docs", ["clean:docs", "styleguide"]
+
+  # $ grunt css comb
+  grunt.registerTask "comb", ["csscomb"]
