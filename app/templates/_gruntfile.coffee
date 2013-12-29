@@ -61,6 +61,12 @@ module.exports = (grunt) ->
           "copy:images"
         ]
 
+      lossyImages:
+        files: ["<%%= yeoman.app %>/images/lossy/{,*/}*"]
+        tasks: [
+          "tinypng:dist"
+        ]
+
 
     # open selected browser
     open:
@@ -351,7 +357,7 @@ module.exports = (grunt) ->
     "concurrent:server"
     "concat:server"
     "autoprefixer:server"
-    # "tinypng:dist"
+    "tinypng:dist"
     "copy"
     "watch"
   ]
@@ -363,7 +369,7 @@ module.exports = (grunt) ->
     "concurrent:dist"
     "uglify:dist"
     "autoprefixer:dist"
-    # "tinypng:dist"
+    "tinypng:dist"
     "copy"
     "imagemin"
     "svgmin"
