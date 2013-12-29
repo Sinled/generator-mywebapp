@@ -214,7 +214,7 @@ module.exports = (grunt) ->
     # get api key here https://tinypng.com/developers
     tinypng:
       options:
-        apiKey: '5vuDa2FtB3nkCSUiX2kKBFuGj1jzxsIe'
+        apiKey: 'api key must be here'
         checkSigs: true
         sigFile: 'tinypng-signatures.json'
 
