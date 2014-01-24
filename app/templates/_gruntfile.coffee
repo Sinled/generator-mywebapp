@@ -96,6 +96,13 @@ module.exports = (grunt) ->
         ]
 
 
+    coffeelint:
+      app: ['<%%= yeoman.app %>/scripts/{,*/}*.coffee', 'gruntfile.coffee']
+      options:
+        max_line_length:
+          level: 'ignore'
+
+
     jshint:
       options:
         jshintrc: ".jshintrc"
