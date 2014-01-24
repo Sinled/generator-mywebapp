@@ -101,7 +101,13 @@ module.exports = (grunt) ->
       options:
         max_line_length:
           level: 'ignore'
-
+        missing_fat_arrows:
+          level: 'warn'
+        line_endings:
+          level: 'error'
+        space_operators:
+          level: 'error'
+          
 
     jshint:
       options:
