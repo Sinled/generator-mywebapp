@@ -1,4 +1,3 @@
-
 # generator-mywebapp
 
 A generator for [Yeoman](http://yeoman.io).
@@ -10,7 +9,7 @@ A generator for [Yeoman](http://yeoman.io).
 ## To install generator-mywebapp from github, run:
 
 ```
-npm install -g git+ssh://git@github.com:Sinled/generator-mywebapp.git
+npm install -g git+https://github.com/Sinled/generator-mywebapp.git
 ```
 
 <!-- To install generator-mywebapp from npm, run:
