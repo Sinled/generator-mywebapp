@@ -12,7 +12,7 @@ module.exports = (grunt) ->
 
   # package options
   packageJson = grunt.file.readJSON('package.json')
-  
+
   # configurable paths
   yeomanConfig =
     appName: "<%= appName %>"
@@ -96,6 +96,7 @@ module.exports = (grunt) ->
         ]
 
 
+    # lint coffee script
     coffeelint:
       app: ['<%%= yeoman.app %>/scripts/{,*/}*.coffee', 'gruntfile.coffee']
       options:
@@ -107,7 +108,7 @@ module.exports = (grunt) ->
           level: 'error'
         space_operators:
           level: 'error'
-          
+
 
     jshint:
       options:
@@ -304,7 +305,7 @@ module.exports = (grunt) ->
     cssmin:
       options:
         report: 'gzip'
-        banner: '/*! Build <%%= pkg.name %> - v<%%= pkg.version %> - <%%= grunt.template.today("yyyy-mm-dd") %> */'        
+        banner: '/*! Build <%%= pkg.name %> - v<%%= pkg.version %> - <%%= grunt.template.today("yyyy-mm-dd") %> */'
 
       dist:
         files:
@@ -387,6 +388,7 @@ module.exports = (grunt) ->
   # $ grunt server
   grunt.registerTask "server", [
     "clean:dist"
+    "coffeelint"
     "concurrent:server"
     "concat:server"
     "autoprefixer:server"
@@ -399,6 +401,7 @@ module.exports = (grunt) ->
   # $ grunt build
   grunt.registerTask "build", [
     "clean:dist"
+    "coffeelint"
     "concurrent:dist"
     "uglify:dist"
     "autoprefixer:dist"
