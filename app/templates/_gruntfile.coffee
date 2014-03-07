@@ -349,6 +349,26 @@ module.exports = (grunt) ->
           "<%%= yeoman.docs %>/docs": "<%%= yeoman.app %>/styles/**/*.{scss,sass}"
 
 
+    # #manifest plugin for appcache (>npm install grunt-manifest --save-dev)
+    # manifest:
+    #   generate:
+    #     options:
+    #       basePath: '<%= yeoman.dist %>'
+    #       network: ['*']
+    #       preferOnline: true
+    #       verbose: true
+    #       timestamp: true
+    #       hash: true
+
+    #     src: [
+    #       'images/**/**.*'
+    #       'styles/**/**.*'
+    #       'scripts/**/**.*'
+    #     ]
+
+    #     dest: '<%= yeoman.dist %>/manifest.appcache'
+
+
     # run heavy tasks here concurrently
     concurrent:
       server: [
