@@ -107,7 +107,7 @@ module.exports = (grunt) ->
           level: 'error'
         space_operators:
           level: 'error'
-          
+
 
     jshint:
       options:
@@ -367,6 +367,7 @@ module.exports = (grunt) ->
   # $ grunt server
   grunt.registerTask "server", [
     "clean:dist"
+    "coffeelint"
     "concurrent:server"
     "concat:server"
     "autoprefixer:server"
@@ -379,6 +380,7 @@ module.exports = (grunt) ->
   # $ grunt build
   grunt.registerTask "build", [
     "clean:dist"
+    "coffeelint"
     "concurrent:dist"
     "uglify:dist"
     "autoprefixer:dist"
