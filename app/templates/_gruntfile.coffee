@@ -12,7 +12,7 @@ module.exports = (grunt) ->
 
   # package options
   packageJson = grunt.file.readJSON('package.json')
-  
+
   # configurable paths
   yeomanConfig =
     appName: "<%= appName %>"
@@ -304,7 +304,7 @@ module.exports = (grunt) ->
     cssmin:
       options:
         report: 'gzip'
-        banner: '/*! Build <%%= pkg.name %> - v<%%= pkg.version %> - <%%= grunt.template.today("yyyy-mm-dd") %> */'        
+        banner: '/*! Build <%%= pkg.name %> - v<%%= pkg.version %> - <%%= grunt.template.today("yyyy-mm-dd") %> */'
 
       dist:
         files:
@@ -400,6 +400,7 @@ module.exports = (grunt) ->
   # $ grunt build
   grunt.registerTask "build", [
     "clean:dist"
+    "jshint"
     "coffeelint"
     "concurrent:dist"
     "uglify:dist"
@@ -414,7 +415,7 @@ module.exports = (grunt) ->
   ]
 
   # $ grunt
-  grunt.registerTask "default", ["jshint", "build"]
+  grunt.registerTask "default", ["build"]
 
   # $ grunt view
   grunt.registerTask "view", ["open", "server"]
