@@ -225,7 +225,7 @@ module.exports = (grunt) ->
         files: [
           expand: true
           cwd: "<%%= yeoman.dist %>/images"
-          src: "{,*/}*.{png,jpg,jpeg}"
+          src: ["{,*/}*.{png,jpg,jpeg}", "!*min*"]
           dest: "<%%= yeoman.dist %>/images"
         ]
 
@@ -264,7 +264,7 @@ module.exports = (grunt) ->
           dot: true
           cwd: "<%%= yeoman.app %>"
           dest: "<%%= yeoman.dist %>"
-          src: ["*.{ico,png,txt}", ".htaccess"]
+          src: ["*.{ico,txt}", ".htaccess"]
         ,
           "<%%= yeoman.dist %>/scripts/jquery.min.js": "<%%= yeoman.app %>/bower_components/jquery/jquery.min.js"
         ]
@@ -401,6 +401,7 @@ module.exports = (grunt) ->
   # $ grunt build
   grunt.registerTask "build", [
     "clean:dist"
+    "jshint"
     "coffeelint"
     "concurrent:dist"
     "uglify:dist"
@@ -415,7 +416,7 @@ module.exports = (grunt) ->
   ]
 
   # $ grunt
-  grunt.registerTask "default", ["jshint", "build"]
+  grunt.registerTask "default", ["build"]
 
   # $ grunt view
   grunt.registerTask "view", ["open", "server"]
