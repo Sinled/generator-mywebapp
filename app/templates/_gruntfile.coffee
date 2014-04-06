@@ -250,9 +250,9 @@ module.exports = (grunt) ->
       dist:
         files: [
           expand: true
-          cwd: "<%%= yeoman.dist %>/images"
+          cwd: "<%%= yeoman.app %>/images"
           src: "{,*/}*.svg"
-          dest: "<%%= yeoman.dist %>/images"
+          dest: "<%%= yeoman.app %>/images"
         ]
 
 
@@ -406,9 +406,9 @@ module.exports = (grunt) ->
     "uglify:dist"
     "autoprefixer:dist"
     "tinypng:dist"
+    "svgmin"
     "copy"
     "imagemin"
-    "svgmin"
     "cssmin"
     "docs"
     "notify:dist"
